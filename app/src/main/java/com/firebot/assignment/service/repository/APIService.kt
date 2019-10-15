@@ -13,7 +13,7 @@ import retrofit2.http.GET
 
 private const val TAG = "APIService"
 
-fun searchRepos(
+fun getProjects(
     service: APIService,
     onSuccess: (repos: List<Project>) -> Unit,
     onError: (error: String) -> Unit
