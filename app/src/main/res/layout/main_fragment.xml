@@ -7,20 +7,42 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainFragment">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/menu_sort"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Trending"
+            android:textColor="@color/toolbar_title"
+            android:textSize="21sp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@android:color/white"
         android:scrollbars="vertical"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/project_view_item"
-        android:background="@android:color/white"
-        tools:ignore="UnusedAttribute" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:ignore="UnusedAttribute"
+        tools:listitem="@layout/project_view_item" />
 
     <TextView
         android:id="@+id/emptyList"

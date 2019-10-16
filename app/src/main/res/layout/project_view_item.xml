@@ -13,7 +13,7 @@
         android:id="@+id/repo_avatar"
         android:layout_width="@dimen/repo_icon_size"
         android:layout_height="@dimen/repo_icon_size"
-        tools:src="@color/colorPrimary"
+        tools:src="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="@+id/repo_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/repo_author" />
