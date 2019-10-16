@@ -15,15 +15,24 @@ class ProjectAdapter : ListAdapter<Project, androidx.recyclerview.widget.Recycle
         return ProjectViewHolder.create(parent)
     }
 
+    private var previousPosition = -1
+    private var mExpandedPosition = -1
+
     override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
         val repoItem = getItem(position)
         if (repoItem != null) {
             (holder as ProjectViewHolder).bind(repoItem)
 
+            val isExpanded = position == mExpandedPosition
+            if (isExpanded) {
+                previousPosition = position
+                getItem(previousPosition).expanded = !isExpanded
+            }
+
             holder.itemView.setOnClickListener {
-                repoItem.expanded.let { isExpanded ->
-                    repoItem.expanded = !isExpanded
-                }
+                repoItem.expanded = !isExpanded
+                mExpandedPosition = if (isExpanded) -1 else position
+                if(position!=previousPosition) notifyItemChanged(previousPosition)
                 notifyItemChanged(position)
             }
         }
