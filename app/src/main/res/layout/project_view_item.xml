@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    tools:ignore="UnusedAttribute">
+
+    <ImageView
+        android:id="@+id/repo_avatar"
+        android:layout_width="@dimen/repo_icon_size"
+        android:layout_height="@dimen/repo_icon_size"
+        tools:src="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/repo_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/repo_author" />
+
+    <TextView
+        android:id="@+id/repo_author"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="@dimen/repo_name_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/repo_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="android" />
+
+    <TextView
+        android:id="@+id/repo_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:maxLines="10"
+        android:textColor="?android:textColorPrimary"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/repo_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/repo_author"
+        tools:ignore="UnusedAttribute"
+        tools:text="Test Assignment App" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/repo_name"
+        app:layout_constraintTop_toBottomOf="@id/repo_name">
+
+        <TextView
+            android:id="@+id/repo_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/repo_description_size"
+            tools:text="A collection of projects to discuss and showcase different Android apps." />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/repo_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:gravity="center"
+                android:drawablePadding="4dp"
+                android:textSize="@dimen/repo_description_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/repo_description"
+                tools:text="C++" />
+
+            <TextView
+                android:id="@+id/repo_stars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/star_yellow"
+                android:gravity="center"
+                android:drawablePadding="4dp"
+                android:textSize="@dimen/repo_description_size"
+                tools:text="30" />
+
+
+            <TextView
+                android:id="@+id/repo_forks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/fork_black"
+                android:drawablePadding="4dp"
+                android:gravity="center"
+                android:textSize="@dimen/repo_description_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/repo_description"
+                tools:text="30" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
