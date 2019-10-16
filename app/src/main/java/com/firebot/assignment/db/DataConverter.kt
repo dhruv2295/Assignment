@@ -17,9 +17,7 @@ class DataConverter {
     @TypeConverter
     fun builtBy(creators: String): List<BuiltBy>? {
         val gson = GsonBuilder().create()
-        val type = object : TypeToken<List<String>>() {
-
-        }.type
+        val type = object : TypeToken<List<BuiltBy>>() {}.type
         val parser = JsonParser()
         val p = parser.parse(creators).asJsonArray
         return gson.fromJson<List<BuiltBy>>(p, type)

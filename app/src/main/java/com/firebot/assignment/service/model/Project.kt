@@ -7,12 +7,13 @@ import com.firebot.assignment.db.DataConverter
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "projects")
+@TypeConverters(DataConverter::class)
+
 data class Project (
-    @PrimaryKey @field:SerializedName("author") var author: String? = null,
+    @PrimaryKey @field:SerializedName("author") var author: String,
 
     @field:SerializedName("avatar") var avatar: String? = null,
 
-    @TypeConverters(DataConverter::class)
     @field:SerializedName("builtBy") var builtBy: List<BuiltBy>? = null,
 
     @field:SerializedName("currentPeriodStars") var currentPeriodStars: Long? = null,
@@ -25,7 +26,11 @@ data class Project (
 
     @field:SerializedName("stars") var stars: Long? = null,
 
-    @field:SerializedName("url") var url: String? = null
+    @field:SerializedName("url") var url: String? = null,
+
+    @field:SerializedName("language") var language: String? = null,
+
+    @field:SerializedName("languageColor") var languageColor: String? = null
 
 )
 
