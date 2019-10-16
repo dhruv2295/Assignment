@@ -50,6 +50,9 @@ class MainFragment : Fragment() {
             errorView.visibility = View.GONE
             viewModel.fetchProjects()
         }
+        swiperefresh.setOnRefreshListener {
+            viewModel.fetchProjects()
+        }
     }
 
     private fun initAdapter() {
@@ -74,6 +77,7 @@ class MainFragment : Fragment() {
             list.visibility = View.GONE
         } else {
             parentShimmerLayout.stopShimmerAnimation()
+            swiperefresh.isRefreshing = false
             list.visibility = View.VISIBLE
         }
     }
