@@ -2,9 +2,7 @@ package com.firebot.assignment.ui.main
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -13,6 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.example.android.codelabs.paging.Injection
 import com.example.android.codelabs.paging.ui.ProjectAdapter
+import com.firebot.assignment.R
 import com.firebot.assignment.service.model.Project
 import kotlinx.android.synthetic.main.main_fragment.*
 
@@ -30,7 +29,7 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(com.firebot.assignment.R.layout.main_fragment, container, false)
+        return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
