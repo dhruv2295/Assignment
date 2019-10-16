@@ -19,6 +19,13 @@ class ProjectAdapter : ListAdapter<Project, androidx.recyclerview.widget.Recycle
         val repoItem = getItem(position)
         if (repoItem != null) {
             (holder as ProjectViewHolder).bind(repoItem)
+
+            holder.itemView.setOnClickListener {
+                repoItem.expanded.let { isExpanded ->
+                    repoItem.expanded = !isExpanded
+                }
+                notifyItemChanged(position)
+            }
         }
     }
 

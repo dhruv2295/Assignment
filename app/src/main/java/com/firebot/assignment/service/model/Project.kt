@@ -30,7 +30,8 @@ data class Project (
 
     @field:SerializedName("language") var language: String? = null,
 
-    @field:SerializedName("languageColor") var languageColor: String? = null
+    @field:SerializedName("languageColor") var languageColor: String? = null,
 
+    var expanded: Boolean
 )
 

@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -27,16 +28,11 @@ class ProjectViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val language: TextView = view.findViewById(R.id.repo_language)
     private val forks: TextView = view.findViewById(R.id.repo_forks)
     private val avatar: ImageView = view.findViewById(R.id.repo_avatar)
+    private val detils: LinearLayout = view.findViewById(R.id.repo_details)
 
     private var repo: Project? = null
 
     private val context: Context = view.context;
-
-    init {
-        view.setOnClickListener {
-           
-        }
-    }
 
     fun bind(repo: Project?) {
         if (repo == null) {
@@ -56,28 +52,20 @@ class ProjectViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         this.repo = repo
         name.text = repo.name
         author.text = repo.author
-
-        // if the description is missing, hide the TextView
-        var descriptionVisibility = View.GONE
+        language.text = repo.language
         description.text = repo.description
-        descriptionVisibility = View.VISIBLE
-        description.visibility = descriptionVisibility
+
 
         stars.text = repo.stars.toString()
         forks.text = repo.forks.toString()
 
         Glide.with(context).load(repo.avatar).apply(RequestOptions.circleCropTransform()).into(avatar);
 
-        // if the language is missing, hide the label and the value
-        var languageVisibility = View.GONE
-        repo.language?.let {
-            if(!repo.language!!.isEmpty()) {
-                language.text = repo.language
-                languageVisibility = View.VISIBLE
-            }
-        }
+        if(repo.expanded)
+            detils.visibility = View.VISIBLE
+        else
+            detils.visibility = View.GONE
 
-        language.visibility = languageVisibility
     }
 
     companion object {
