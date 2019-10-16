@@ -1,9 +1,7 @@
 package com.firebot.assignment.service.repository
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.firebot.assignment.db.ProjectLocalCache
-import com.firebot.assignment.service.model.Project
 import com.firebot.assignment.service.model.ProjectFetchResults
 
 class ProjectRepository(
@@ -22,6 +20,8 @@ class ProjectRepository(
     // ...
     fun getProjects(): ProjectFetchResults {
         // This isn't an optimal implementation. We'll fix it later.
+        lastRequestedPage = 1
+        requestAndSaveData()
 
         val data = cache.allProjects()
 
