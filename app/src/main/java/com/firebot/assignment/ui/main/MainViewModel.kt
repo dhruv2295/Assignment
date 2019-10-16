@@ -27,9 +27,17 @@ class MainViewModel(private val repository: ProjectRepository) : ViewModel() {
      * Search a repository based on a query string.
      */
     fun fetchProjects() {
-        queryLiveData.postValue("");
+        queryLiveData.postValue("")
     }
 
+    fun forceFetchProjects() {
+        repository.requestMore()
+    }
+
+    fun fetchLocalProjects() : LiveData<List<Project>>
+    {
+        return repository.getLocalProjects()
+    }
     fun listScrolled(visibleItemCount: Int, lastVisibleItemPosition: Int, totalItemCount: Int) {
         if (visibleItemCount + lastVisibleItemPosition + VISIBLE_THRESHOLD >= totalItemCount) {
             repository.requestMore()

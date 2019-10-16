@@ -87,6 +87,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/star_yellow"
                 android:gravity="center"
+                android:layout_marginStart="16dp"
                 android:drawablePadding="4dp"
                 android:textSize="@dimen/repo_description_size"
                 tools:text="30" />
@@ -99,6 +100,7 @@
                 android:drawableStart="@drawable/fork_black"
                 android:drawablePadding="4dp"
                 android:gravity="center"
+                android:layout_marginStart="16dp"
                 android:textSize="@dimen/repo_description_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/repo_description"

@@ -2,8 +2,9 @@ package com.firebot.assignment.ui.main
 
 import android.os.Bundle
 import android.util.Log
-import android.view.*
-import android.widget.Toast
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -49,9 +50,11 @@ class MainFragment : Fragment() {
         retry.setOnClickListener {
             errorView.visibility = View.GONE
             viewModel.fetchProjects()
+            showEmptyList(true)
         }
         swiperefresh.setOnRefreshListener {
-            viewModel.fetchProjects()
+            viewModel.forceFetchProjects()
+            showEmptyList(true)
         }
     }
 
@@ -67,7 +70,16 @@ class MainFragment : Fragment() {
             adapter.submitList(it)
         })
         viewModel.networkErrors.observe(this, Observer<String> {
-            errorView.visibility = View.VISIBLE
+            swiperefresh.isRefreshing = false
+
+            viewModel.fetchLocalProjects().observe(this, Observer<List<Project>>{
+                if(it.isEmpty()) {
+                    showEmptyList(false)
+                    errorView.visibility = View.VISIBLE
+                }
+
+            })
+
         })
     }
 
