@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
+        android:elevation="2dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,12 +31,15 @@
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
 
+    <include layout="@layout/shimmer_placeholder" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/white"
         android:scrollbars="vertical"
+        android:visibility="invisible"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,18 +48,6 @@
         tools:ignore="UnusedAttribute"
         tools:listitem="@layout/project_view_item" />
 
-    <TextView
-        android:id="@+id/emptyList"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Empty "
-        android:textSize="14sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <include
         layout="@layout/error_view"

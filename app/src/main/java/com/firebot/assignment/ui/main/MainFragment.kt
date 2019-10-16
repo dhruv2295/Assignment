@@ -13,7 +13,9 @@ import com.example.android.codelabs.paging.Injection
 import com.example.android.codelabs.paging.ui.ProjectAdapter
 import com.firebot.assignment.R
 import com.firebot.assignment.service.model.Project
+import kotlinx.android.synthetic.main.error_view.*
 import kotlinx.android.synthetic.main.main_fragment.*
+import kotlinx.android.synthetic.main.shimmer_placeholder.*
 
 
 class MainFragment : Fragment() {
@@ -41,7 +43,13 @@ class MainFragment : Fragment() {
         setupScrollListener()
 
         initAdapter()
+        parentShimmerLayout.startShimmerAnimation()
         viewModel.fetchProjects()
+
+        retry.setOnClickListener {
+            errorView.visibility = View.GONE
+            viewModel.fetchProjects()
+        }
     }
 
     private fun initAdapter() {
@@ -56,16 +64,16 @@ class MainFragment : Fragment() {
             adapter.submitList(it)
         })
         viewModel.networkErrors.observe(this, Observer<String> {
-            Toast.makeText(context, "\uD83D\uDE28 Wooops $it", Toast.LENGTH_LONG).show()
+            errorView.visibility = View.VISIBLE
         })
     }
 
     private fun showEmptyList(show: Boolean) {
         if (show) {
-            emptyList.visibility = View.VISIBLE
+            parentShimmerLayout.startShimmerAnimation()
             list.visibility = View.GONE
         } else {
-            emptyList.visibility = View.GONE
+            parentShimmerLayout.stopShimmerAnimation()
             list.visibility = View.VISIBLE
         }
     }
