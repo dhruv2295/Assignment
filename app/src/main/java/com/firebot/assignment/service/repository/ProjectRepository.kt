@@ -1,5 +1,6 @@
 package com.firebot.assignment.service.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.firebot.assignment.db.ProjectLocalCache
@@ -13,6 +14,7 @@ class ProjectRepository(
 ) {
 
     private var lastRequestedPage = 1
+    private var TIME_TO_PURGE = 7200000
 
     private val networkErrors = MutableLiveData<String>()
 
@@ -24,10 +26,13 @@ class ProjectRepository(
         lastRequestedPage = 1
         requestAndSaveData()
 
-        val data = cache.allProjects()
+        cache.getTime{
+            Log.d("LocalCache", "getting time:"+it)
+                    if(System.currentTimeMillis() - it > TIME_TO_PURGE)
+                        cache.clearAllData()
+        }
 
-
-        return ProjectFetchResults(data, networkErrors)
+        return ProjectFetchResults(cache.allProjects(), networkErrors)
 
     }
 

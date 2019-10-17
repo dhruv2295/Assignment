@@ -32,6 +32,8 @@ data class Project (
 
     @field:SerializedName("languageColor") var languageColor: String? = null,
 
-    var expanded: Boolean
+    var expanded: Boolean,
+
+    var timeAdded: Long
 )
 

@@ -44,4 +44,20 @@ class ProjectLocalCache(
     fun allProjects(): LiveData<List<Project>> {
         return projectDao.allProjects()
     }
+
+    fun getTime(fetchingFinished: (Long) -> Unit)
+    {
+        ioExecutor.execute {
+            fetchingFinished(projectDao.getTime())
+        }
+    }
+
+    fun clearAllData()
+    {
+        ioExecutor.execute {
+            Log.d("LocalCache", "deleting")
+            projectDao.deleteAllData()
+//            deletionFinished()
+        }
+    }
 }

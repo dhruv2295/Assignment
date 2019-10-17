@@ -2,6 +2,7 @@
 package com.example.android.codelabs.paging.db
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -33,4 +34,9 @@ interface ProjectDao {
     @Query("SELECT * FROM projects ORDER BY name")
     fun allProjectsByName(): LiveData<List<Project>>
 
+    @Query("DELETE FROM projects")
+    fun deleteAllData()
+
+    @Query("SELECT MAX(timeAdded) FROM projects")
+    fun getTime(): Long
 }

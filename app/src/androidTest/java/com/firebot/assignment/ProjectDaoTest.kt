@@ -27,13 +27,13 @@ class ProjectDaoTest {
 
     private val projectA = Project("a", "avatar", creators, 1,
         "description", 200,"name",10,"url","language",
-        "#24242",false)
+        "#24242",false,0)
     private val projectB = Project("b", "avatar", creators, 1,
         "description", 200,"name",10,"url","language",
-        "#24242",false)
+        "#24242",false,0)
     private val projectC = Project("c", "avatar", creators, 1,
         "description", 200,"name",10,"url","language",
-        "#24242",false)
+        "#24242",false,0)
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()

@@ -4,21 +4,22 @@ package com.example.android.codelabs.paging.ui
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.firebot.assignment.service.model.Project
 
 /**
  * Adapter for the list of repositories.
  */
-class ProjectAdapter : ListAdapter<Project, androidx.recyclerview.widget.RecyclerView.ViewHolder>(REPO_COMPARATOR) {
+class ProjectAdapter : ListAdapter<Project, RecyclerView.ViewHolder>(REPO_COMPARATOR) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ProjectViewHolder.create(parent)
     }
 
     private var previousPosition = -1
     private var mExpandedPosition = -1
 
-    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val repoItem = getItem(position)
         if (repoItem != null) {
             (holder as ProjectViewHolder).bind(repoItem)

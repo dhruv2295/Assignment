@@ -34,6 +34,10 @@ fun getProjects(
                 Log.d(TAG, "got a response $response")
                 if (response.isSuccessful) {
                     val repos = response.body() ?: emptyList()
+                    val time = System.currentTimeMillis()
+                    repos.forEach {
+                        it.timeAdded = time
+                    }
                     onSuccess(repos)
                 } else {
                     onError(response.errorBody()?.string() ?: "Unknown error")
