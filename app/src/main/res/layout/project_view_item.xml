@@ -51,7 +51,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="8dp"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/repo_name"
         app:layout_constraintTop_toBottomOf="@id/repo_name">
@@ -77,6 +76,7 @@
                 android:gravity="center"
                 android:drawablePadding="4dp"
                 android:textSize="@dimen/repo_description_size"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/repo_description"
                 tools:text="C++" />
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/star_yellow"
                 android:gravity="center"
-                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:drawablePadding="4dp"
                 android:textSize="@dimen/repo_description_size"
                 tools:text="30" />
@@ -100,7 +100,6 @@
                 android:drawableStart="@drawable/fork_black"
                 android:drawablePadding="4dp"
                 android:gravity="center"
-                android:layout_marginStart="16dp"
                 android:textSize="@dimen/repo_description_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/repo_description"

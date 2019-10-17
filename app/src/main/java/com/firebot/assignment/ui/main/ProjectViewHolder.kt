@@ -55,6 +55,10 @@ class ProjectViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         language.text = repo.language
         description.text = repo.description
 
+        if(repo.language==null)
+            language.visibility = View.GONE
+        else
+            language.visibility = View.VISIBLE
 
         stars.text = repo.stars.toString()
         forks.text = repo.forks.toString()
