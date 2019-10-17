@@ -20,11 +20,14 @@ interface ProjectDao {
     // Do a similar query as the search API:
     // Look for repos that contain the query string in the name or in the description
     // and order those results descending, by the number of stars and then by name
-    @Query("SELECT * FROM projects WHERE (name LIKE :queryString) OR (description LIKE " +
-            ":queryString) ORDER BY stars DESC, name ASC")
+    @Query("SELECT * FROM projects WHERE (author LIKE :queryString) OR (description LIKE " +
+            ":queryString) ORDER BY stars DESC, author ASC")
     fun projectsByName(queryString: String): LiveData<List<Project>>
 
     @Query("SELECT * FROM projects")
     fun allProjects(): LiveData<List<Project>>
+
+    @Query("SELECT * FROM projects ORDER BY author")
+    fun allProjectsByName(): LiveData<List<Project>>
 
 }
