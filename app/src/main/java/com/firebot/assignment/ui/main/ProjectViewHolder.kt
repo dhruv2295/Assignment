@@ -1,9 +1,8 @@
-
 package com.example.android.codelabs.paging.ui
 
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.Glide.init
 import com.bumptech.glide.request.RequestOptions
 import com.firebot.assignment.R
 import com.firebot.assignment.service.model.Project
@@ -31,6 +29,7 @@ class ProjectViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val forks: TextView = view.findViewById(R.id.repo_forks)
     private val avatar: ImageView = view.findViewById(R.id.repo_avatar)
     private val detils: LinearLayout = view.findViewById(R.id.repo_details)
+    private val languageColor: ImageView = view.findViewById(R.id.language_color)
 
     private var repo: Project? = null
 
@@ -57,17 +56,23 @@ class ProjectViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         language.text = repo.language
         description.text = repo.description
 
-        if(repo.language==null)
+        if (repo.language == null) {
             language.visibility = View.GONE
-        else
+            languageColor.visibility = View.GONE
+        } else {
+            val cd = ColorDrawable(Color.parseColor(repo.languageColor))
+            Glide.with(context).load(cd).apply(RequestOptions.circleCropTransform())
+                .into(languageColor);
             language.visibility = View.VISIBLE
+        }
 
         stars.text = NumberFormat.getNumberInstance(Locale.US).format(repo.stars)
         forks.text = NumberFormat.getNumberInstance(Locale.US).format(repo.forks)
 
-        Glide.with(context).load(repo.avatar).apply(RequestOptions.circleCropTransform()).into(avatar);
+        Glide.with(context).load(repo.avatar).apply(RequestOptions.circleCropTransform())
+            .into(avatar);
 
-        if(repo.expanded)
+        if (repo.expanded)
             detils.visibility = View.VISIBLE
         else
             detils.visibility = View.GONE
@@ -77,7 +82,7 @@ class ProjectViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     companion object {
         fun create(parent: ViewGroup): ProjectViewHolder {
             val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.project_view_item, parent, false)
+                .inflate(R.layout.project_view_item, parent, false)
             return ProjectViewHolder(view)
         }
     }
