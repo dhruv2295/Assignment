@@ -9,13 +9,13 @@ import com.google.gson.reflect.TypeToken
 class DataConverter {
 
     @TypeConverter
-    fun storeBuiltByData(creators: List<BuiltBy>): String {
+    fun builtByToString(creators: List<BuiltBy>): String {
         val gson = GsonBuilder().create()
         return gson.toJson(creators)
     }
 
     @TypeConverter
-    fun builtBy(creators: String): List<BuiltBy>? {
+    fun stringToBuiltBy(creators: String): List<BuiltBy>? {
         val gson = GsonBuilder().create()
         val type = object : TypeToken<List<BuiltBy>>() {}.type
         val parser = JsonParser()
