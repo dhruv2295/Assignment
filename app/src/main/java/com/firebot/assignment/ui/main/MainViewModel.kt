@@ -1,5 +1,6 @@
 package com.firebot.assignment.ui.main
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -38,9 +39,19 @@ class MainViewModel(private val repository: ProjectRepository) : ViewModel() {
     {
         return repository.getLocalProjects()
     }
+
+    fun fetchProjectsByName() : LiveData<List<Project>>{
+        return repository.getProjectsByName()
+    }
+
+    fun fetchProjectsByStars() : LiveData<List<Project>>{
+        return repository.getProjectsByStars()
+    }
+
     fun listScrolled(visibleItemCount: Int, lastVisibleItemPosition: Int, totalItemCount: Int) {
         if (visibleItemCount + lastVisibleItemPosition + VISIBLE_THRESHOLD >= totalItemCount) {
             repository.requestMore()
         }
     }
+
 }

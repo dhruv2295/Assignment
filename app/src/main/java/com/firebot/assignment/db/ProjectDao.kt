@@ -24,10 +24,13 @@ interface ProjectDao {
             ":queryString) ORDER BY stars DESC, author ASC")
     fun projectsByName(queryString: String): LiveData<List<Project>>
 
+    @Query("SELECT * FROM projects ORDER BY stars DESC")
+    fun projectsByStars(): LiveData<List<Project>>
+
     @Query("SELECT * FROM projects")
     fun allProjects(): LiveData<List<Project>>
 
-    @Query("SELECT * FROM projects ORDER BY author")
+    @Query("SELECT * FROM projects ORDER BY name")
     fun allProjectsByName(): LiveData<List<Project>>
 
 }

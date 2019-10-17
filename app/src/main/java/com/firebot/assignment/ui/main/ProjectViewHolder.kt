@@ -16,6 +16,8 @@ import com.bumptech.glide.Glide.init
 import com.bumptech.glide.request.RequestOptions
 import com.firebot.assignment.R
 import com.firebot.assignment.service.model.Project
+import java.text.NumberFormat
+import java.util.*
 
 /**
  * View Holder for a [Project] RecyclerView list item.
@@ -60,8 +62,8 @@ class ProjectViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         else
             language.visibility = View.VISIBLE
 
-        stars.text = repo.stars.toString()
-        forks.text = repo.forks.toString()
+        stars.text = NumberFormat.getNumberInstance(Locale.US).format(repo.stars)
+        forks.text = NumberFormat.getNumberInstance(Locale.US).format(repo.forks)
 
         Glide.with(context).load(repo.avatar).apply(RequestOptions.circleCropTransform()).into(avatar);
 

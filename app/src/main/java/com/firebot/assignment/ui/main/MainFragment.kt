@@ -3,6 +3,7 @@ package com.firebot.assignment.ui.main
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -55,6 +56,28 @@ class MainFragment : Fragment() {
         swiperefresh.setOnRefreshListener {
             viewModel.forceFetchProjects()
             showEmptyList(true)
+        }
+
+        toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.action_name -> {
+                    viewModel.fetchProjectsByName().observe(this, Observer<List<Project>> {
+                        adapter.submitList(it)
+                    })
+
+                    true
+                }
+
+                R.id.action_stars -> {
+                    viewModel.fetchProjectsByStars().observe(this, Observer<List<Project>> {
+                        adapter.submitList(it)
+                    })
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
         }
     }
 

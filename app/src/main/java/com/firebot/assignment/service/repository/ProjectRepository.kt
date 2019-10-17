@@ -39,6 +39,14 @@ class ProjectRepository(
         return cache.allProjects()
     }
 
+    fun getProjectsByName(): LiveData<List<Project>> {
+        return cache.allProjectsByName()
+    }
+
+    fun getProjectsByStars(): LiveData<List<Project>> {
+        return cache.allProjectsByStars()
+    }
+
     private fun requestAndSaveData() {
         if (isRequestInProgress) return
 

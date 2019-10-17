@@ -33,10 +33,12 @@ class ProjectLocalCache(
      * any characters between the words.
      * @param name repository name
      */
-    fun projectsByName(name: String): LiveData<List<Project>> {
-        // appending '%' so we can allow other characters to be before and after the query string
-        val query = "%${name.replace(' ', '%')}%"
-        return projectDao.projectsByName(query)
+    fun allProjectsByName(): LiveData<List<Project>> {
+        return projectDao.allProjectsByName()
+    }
+
+    fun allProjectsByStars(): LiveData<List<Project>> {
+        return projectDao.projectsByStars()
     }
 
     fun allProjects(): LiveData<List<Project>> {
