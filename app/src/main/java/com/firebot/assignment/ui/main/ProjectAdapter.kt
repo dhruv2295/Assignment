@@ -24,17 +24,20 @@ class ProjectAdapter : ListAdapter<Project, RecyclerView.ViewHolder>(REPO_COMPAR
         if (repoItem != null) {
             (holder as ProjectViewHolder).bind(repoItem)
 
-            val isExpanded = position == mExpandedPosition
-            if (isExpanded) {
-                previousPosition = position
-                getItem(previousPosition).expanded = !isExpanded
-            }
 
             holder.itemView.setOnClickListener {
-                repoItem.expanded = !isExpanded
-                mExpandedPosition = if (isExpanded) -1 else position
-                if(position!=previousPosition) notifyItemChanged(previousPosition)
+                repoItem.expanded = !repoItem.expanded
                 notifyItemChanged(position)
+
+
+                if(previousPosition!=-1 && previousPosition!=position) {
+                    getItem(previousPosition).expanded = false
+                    notifyItemChanged(previousPosition)
+                }
+                previousPosition = position
+
+
+
             }
         }
     }
