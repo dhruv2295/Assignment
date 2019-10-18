@@ -42,7 +42,6 @@ class MainFragment : Fragment() {
             context?.let { Injection.provideViewModelFactory(it) })
             .get(MainViewModel::class.java)
 
-        setupScrollListener()
 
         initAdapter()
         parentShimmerLayout.startShimmerAnimation()
@@ -118,23 +117,6 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun setupScrollListener() {
-        val layoutManager = list.layoutManager as androidx.recyclerview.widget.LinearLayoutManager
-        list.addOnScrollListener(object :
-            androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
-            override fun onScrolled(
-                recyclerView: androidx.recyclerview.widget.RecyclerView,
-                dx: Int,
-                dy: Int
-            ) {
-                super.onScrolled(recyclerView, dx, dy)
-                val totalItemCount = layoutManager.itemCount
-                val visibleItemCount = layoutManager.childCount
-                val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
 
-                //Not needed since we are fetching all the data in one go
-//                viewModel.listScrolled(visibleItemCount, lastVisibleItem, totalItemCount)
-            }
-        })
-    }
+}
 }

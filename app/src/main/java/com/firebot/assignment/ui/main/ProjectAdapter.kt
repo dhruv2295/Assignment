@@ -17,7 +17,6 @@ class ProjectAdapter : ListAdapter<Project, RecyclerView.ViewHolder>(REPO_COMPAR
     }
 
     private var previousPosition = -1
-    private var mExpandedPosition = -1
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val repoItem = getItem(position)
