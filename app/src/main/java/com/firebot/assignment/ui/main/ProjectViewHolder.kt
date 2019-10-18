@@ -3,6 +3,7 @@ package com.example.android.codelabs.paging.ui
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -60,9 +61,14 @@ class ProjectViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             language.visibility = View.GONE
             languageColor.visibility = View.GONE
         } else {
-            val cd = ColorDrawable(Color.parseColor(repo.languageColor))
-            Glide.with(context).load(cd).apply(RequestOptions.circleCropTransform())
-                .into(languageColor);
+            try {
+                val cd = ColorDrawable(Color.parseColor(repo.languageColor))
+                Glide.with(context).load(cd).apply(RequestOptions.circleCropTransform())
+                    .into(languageColor);
+
+            } catch (e: IllegalArgumentException) {
+                Log.w("ViewHolder",e)
+            }
             language.visibility = View.VISIBLE
         }
 
