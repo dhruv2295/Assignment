@@ -116,7 +116,5 @@ class MainFragment : Fragment() {
             list.visibility = View.VISIBLE
         }
     }
-
-
-}
+    
 }
