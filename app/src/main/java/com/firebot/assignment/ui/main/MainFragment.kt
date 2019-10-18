@@ -96,8 +96,9 @@ class MainFragment : Fragment() {
             swiperefresh.isRefreshing = false
 
             viewModel.fetchLocalProjects().observe(this, Observer<List<Project>>{
+                showEmptyList(false)
+
                 if(it.isEmpty()) {
-                    showEmptyList(false)
                     errorView.visibility = View.VISIBLE
                 }
 
