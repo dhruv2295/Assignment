@@ -6,8 +6,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.android.codelabs.paging.db.IssueDao
 import com.example.android.codelabs.paging.db.IssueDatabase
-import com.firebot.assignment.service.model.BuiltBy
-import com.firebot.assignment.service.model.Project
 import com.google.samples.apps.sunflower.utilities.getValue
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.Matchers

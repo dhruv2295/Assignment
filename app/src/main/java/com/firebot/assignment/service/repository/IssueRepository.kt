@@ -26,10 +26,10 @@ class IssueRepository(
         lastRequestedPage = 1
         requestAndSaveData()
 
-        cache.getTime{
-            Log.d("LocalCache", "getting time:"+it)
-                    if(System.currentTimeMillis() - it > TIME_TO_PURGE)
-                        cache.clearAllData()
+        cache.getTime {
+            Log.d("LocalCache", "getting time:" + it)
+            if (System.currentTimeMillis() - it > TIME_TO_PURGE)
+                cache.clearAllData()
         }
 
         return IssueFetchResults(cache.allIssues(), networkErrors)
@@ -49,12 +49,11 @@ class IssueRepository(
     }
 
 
-
     private fun requestAndSaveData() {
         if (isRequestInProgress) return
 
         isRequestInProgress = true
-        getProjects(apiService, { repos ->
+        getIssues(apiService, { repos ->
             cache.insert(repos) {
                 lastRequestedPage++
                 isRequestInProgress = false
