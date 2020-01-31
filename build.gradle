@@ -36,5 +36,6 @@ ext {
     workVersion = '2.1.0'
     truthVersion = '0.42'
     junitVersion = '4.12'
+    navigationVersion = '2.2.0'
 
 }
