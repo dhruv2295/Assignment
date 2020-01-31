@@ -3,11 +3,11 @@ package com.example.android.codelabs.paging
 
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
-import com.example.android.codelabs.paging.db.ProjectDatabase
+import com.example.android.codelabs.paging.db.IssueDatabase
 import com.example.android.codelabs.paging.ui.ViewModelFactory
-import com.firebot.assignment.db.ProjectLocalCache
+import com.firebot.assignment.db.IssueLocalCache
 import com.firebot.assignment.service.repository.APIService
-import com.firebot.assignment.service.repository.ProjectRepository
+import com.firebot.assignment.service.repository.IssueRepository
 import java.util.concurrent.Executors
 
 /**
@@ -18,19 +18,19 @@ import java.util.concurrent.Executors
 object Injection {
 
     /**
-     * Creates an instance of [ProjectLocalCache] based on the database DAO.
+     * Creates an instance of [IssueLocalCache] based on the database DAO.
      */
-    private fun provideCache(context: Context): ProjectLocalCache {
-        val database = ProjectDatabase.getInstance(context)
-        return ProjectLocalCache(database.reposDao(), Executors.newSingleThreadExecutor())
+    private fun provideCache(context: Context): IssueLocalCache {
+        val database = IssueDatabase.getInstance(context)
+        return IssueLocalCache(database.reposDao(), Executors.newSingleThreadExecutor())
     }
 
     /**
-     * Creates an instance of [ProjectRepository] based on the [APIService] and a
-     * [ProjectLocalCache]
+     * Creates an instance of [IssueRepository] based on the [APIService] and a
+     * [IssueLocalCache]
      */
-    private fun provideGithubRepository(context: Context): ProjectRepository {
-        return ProjectRepository(APIService.create(), provideCache(context))
+    private fun provideGithubRepository(context: Context): IssueRepository {
+        return IssueRepository(APIService.create(), provideCache(context))
     }
 
     /**

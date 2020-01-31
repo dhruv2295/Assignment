@@ -1,7 +1,7 @@
 package com.firebot.assignment.service.repository
 
 import android.util.Log
-import com.firebot.assignment.service.model.Project
+import com.firebot.assignment.service.model.Issues
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -15,21 +15,21 @@ private const val TAG = "APIService"
 
 fun getProjects(
     service: APIService,
-    onSuccess: (repos: List<Project>) -> Unit,
+    onSuccess: (repos: List<Issues>) -> Unit,
     onError: (error: String) -> Unit
 ) {
 //    Log.d(TAG, "query: $query, page: $page, itemsPerPage: $itemsPerPage")
 
-    service.getRepositories().enqueue(
-        object : Callback<List<Project>> {
-            override fun onFailure(call: Call<List<Project>>?, t: Throwable) {
+    service.getIssues().enqueue(
+        object : Callback<List<Issues>> {
+            override fun onFailure(call: Call<List<Issues>>?, t: Throwable) {
                 Log.d(TAG, "fail to get data")
                 onError(t.message ?: "unknown error")
             }
 
             override fun onResponse(
-                call: Call<List<Project>>?,
-                response: Response<List<Project>>
+                call: Call<List<Issues>>?,
+                response: Response<List<Issues>>
             ) {
                 Log.d(TAG, "got a response $response")
                 if (response.isSuccessful) {
@@ -50,11 +50,11 @@ fun getProjects(
 interface APIService {
 
 
-    @GET("/repositories")
-    fun getRepositories(): Call<List<Project>>
+    @GET("repos/firebase/firebase-ios-sdk/issues")
+    fun getIssues(): Call<List<Issues>>
 
     companion object {
-        private const val BASE_URL = "https://github-trending-api.now.sh/"
+        private const val BASE_URL = "https://api.github.com/"
 
         fun create(): APIService {
             val logger = HttpLoggingInterceptor()

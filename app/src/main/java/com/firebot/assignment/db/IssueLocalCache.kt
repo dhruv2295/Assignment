@@ -3,26 +3,26 @@ package com.firebot.assignment.db
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import com.example.android.codelabs.paging.db.ProjectDao
-import com.firebot.assignment.service.model.Project
+import com.example.android.codelabs.paging.db.IssueDao
+import com.firebot.assignment.service.model.Issues
 import java.util.concurrent.Executor
 
 /**
  * Class that handles the DAO local data source. This ensures that methods are triggered on the
  * correct executor.
  */
-class ProjectLocalCache(
-    private val projectDao: ProjectDao,
+class IssueLocalCache(
+    private val issueDao: IssueDao,
     private val ioExecutor: Executor
 ) {
 
     /**
      * Insert a list of repos in the database, on a background thread.
      */
-    fun insert(repos: List<Project>, insertFinished: () -> Unit) {
+    fun insert(repos: List<Issues>, insertFinished: () -> Unit) {
         ioExecutor.execute {
             Log.d("LocalCache", "inserting ${repos.size} repos")
-            projectDao.insert(repos)
+            issueDao.insert(repos)
             insertFinished()
         }
     }
@@ -33,22 +33,19 @@ class ProjectLocalCache(
      * any characters between the words.
      * @param name repository name
      */
-    fun allProjectsByName(): LiveData<List<Project>> {
-        return projectDao.allProjectsByName()
+    fun allIssuesByDate(): LiveData<List<Issues>> {
+        return issueDao.allIssuesByDate()
     }
 
-    fun allProjectsByStars(): LiveData<List<Project>> {
-        return projectDao.projectsByStars()
-    }
 
-    fun allProjects(): LiveData<List<Project>> {
-        return projectDao.allProjects()
+    fun allIssues(): LiveData<List<Issues>> {
+        return issueDao.allIssues()
     }
 
     fun getTime(fetchingFinished: (Long) -> Unit)
     {
         ioExecutor.execute {
-            fetchingFinished(projectDao.getTime())
+            fetchingFinished(issueDao.getTime())
         }
     }
 
@@ -56,7 +53,7 @@ class ProjectLocalCache(
     {
         ioExecutor.execute {
             Log.d("LocalCache", "deleting")
-            projectDao.deleteAllData()
+            issueDao.deleteAllData()
 //            deletionFinished()
         }
     }

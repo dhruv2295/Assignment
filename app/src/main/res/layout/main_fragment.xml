@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Trending"
+            android:text="Issues"
             android:textColor="@color/toolbar_title"
             android:textSize="21sp"
             android:textStyle="bold" />

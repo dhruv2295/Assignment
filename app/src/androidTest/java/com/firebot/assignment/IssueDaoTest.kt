@@ -4,8 +4,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.example.android.codelabs.paging.db.ProjectDao
-import com.example.android.codelabs.paging.db.ProjectDatabase
+import com.example.android.codelabs.paging.db.IssueDao
+import com.example.android.codelabs.paging.db.IssueDatabase
 import com.firebot.assignment.service.model.BuiltBy
 import com.firebot.assignment.service.model.Project
 import com.google.samples.apps.sunflower.utilities.getValue
@@ -15,9 +15,9 @@ import org.junit.*
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class ProjectDaoTest {
-    private lateinit var database: ProjectDatabase
-    private lateinit var projectDao: ProjectDao
+class IssueDaoTest {
+    private lateinit var database: IssueDatabase
+    private lateinit var issueDao: IssueDao
 
     val creators = listOf(
         BuiltBy("avatar", "href", "username"),
@@ -41,11 +41,11 @@ class ProjectDaoTest {
     @Before
     fun createDb() = runBlocking {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
-        database = Room.inMemoryDatabaseBuilder(context, ProjectDatabase::class.java).build()
-        projectDao = database.reposDao()
+        database = Room.inMemoryDatabaseBuilder(context, IssueDatabase::class.java).build()
+        issueDao = database.reposDao()
 
         // Insert projects in non-alphabetical order to test that results are sorted by name
-        projectDao.insert(listOf(projectB, projectC, projectA))
+        issueDao.insert(listOf(projectB, projectC, projectA))
     }
 
     @After
@@ -55,13 +55,13 @@ class ProjectDaoTest {
 
     @Test
     fun testGetProjects() {
-        val projectList = getValue(projectDao.allProjects())
+        val projectList = getValue(issueDao.allProjects())
         Assert.assertThat(projectList.size, Matchers.equalTo(3))
     }
 
     @Test
     fun testGetProjectsSortedByName() {
-        val projectList = getValue(projectDao.allProjectsByName())
+        val projectList = getValue(issueDao.allProjectsByName())
 
         // Ensure project list is sorted by name
         Assert.assertThat(projectList[0].author, Matchers.equalTo(projectA.author))
@@ -71,14 +71,14 @@ class ProjectDaoTest {
 
     @Test
     fun testGetProjectsByName() {
-        val projectList = getValue(projectDao.projectsByName("a"))
+        val projectList = getValue(issueDao.projectsByName("a"))
         Assert.assertThat(projectList.size, Matchers.equalTo(1))
         Assert.assertThat(
-            getValue(projectDao.projectsByName("b")).size,
+            getValue(issueDao.projectsByName("b")).size,
             Matchers.equalTo(1)
         )
         Assert.assertThat(
-            getValue(projectDao.projectsByName("c")).size,
+            getValue(issueDao.projectsByName("c")).size,
             Matchers.equalTo(1)
         )
 

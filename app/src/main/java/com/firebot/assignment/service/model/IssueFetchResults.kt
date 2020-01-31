@@ -3,8 +3,8 @@ package com.firebot.assignment.service.model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
-data class ProjectFetchResults(
-    val data: LiveData<List<Project>>,
+data class IssueFetchResults(
+    val data: LiveData<List<Issues>>,
     val networkErrors: MutableLiveData<String>
 ) {
 }

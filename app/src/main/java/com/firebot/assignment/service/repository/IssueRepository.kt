@@ -3,25 +3,25 @@ package com.firebot.assignment.service.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.firebot.assignment.db.ProjectLocalCache
-import com.firebot.assignment.service.model.Project
-import com.firebot.assignment.service.model.ProjectFetchResults
+import com.firebot.assignment.db.IssueLocalCache
+import com.firebot.assignment.service.model.IssueFetchResults
+import com.firebot.assignment.service.model.Issues
 
-class ProjectRepository(
+class IssueRepository(
     private val apiService: APIService,
-    private val cache: ProjectLocalCache
+    private val cache: IssueLocalCache
 
 ) {
 
     private var lastRequestedPage = 1
-    private var TIME_TO_PURGE = 7200000
+    private var TIME_TO_PURGE = 86400000
 
     private val networkErrors = MutableLiveData<String>()
 
     // avoid triggering multiple requests in the same time
     private var isRequestInProgress = false
 
-    fun getProjects(): ProjectFetchResults {
+    fun getIssues(): IssueFetchResults {
 
         lastRequestedPage = 1
         requestAndSaveData()
@@ -32,7 +32,7 @@ class ProjectRepository(
                         cache.clearAllData()
         }
 
-        return ProjectFetchResults(cache.allProjects(), networkErrors)
+        return IssueFetchResults(cache.allIssues(), networkErrors)
 
     }
 
@@ -40,17 +40,15 @@ class ProjectRepository(
         requestAndSaveData()
     }
 
-    fun getLocalProjects(): LiveData<List<Project>> {
-        return cache.allProjects()
+    fun getLocalIssues(): LiveData<List<Issues>> {
+        return cache.allIssues()
     }
 
-    fun getProjectsByName(): LiveData<List<Project>> {
-        return cache.allProjectsByName()
+    fun getIssuesByDate(): LiveData<List<Issues>> {
+        return cache.allIssuesByDate()
     }
 
-    fun getProjectsByStars(): LiveData<List<Project>> {
-        return cache.allProjectsByStars()
-    }
+
 
     private fun requestAndSaveData() {
         if (isRequestInProgress) return
