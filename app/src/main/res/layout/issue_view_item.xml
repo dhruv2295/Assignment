@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
     android:background="@android:color/white"
     android:foreground="?android:attr/selectableItemBackground"
+    android:padding="16dp"
     tools:ignore="UnusedAttribute">
 
     <ImageView
@@ -14,8 +14,9 @@
         android:layout_width="@dimen/repo_icon_size"
         android:layout_height="@dimen/repo_icon_size"
         android:src="@drawable/ic_error_outline"
-        app:layout_constraintBottom_toBottomOf="@+id/repo_name"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/repo_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/repo_name" />
 
 
     <TextView
@@ -34,26 +35,20 @@
         tools:ignore="UnusedAttribute"
         tools:text="Test Assignment App" />
 
-    <LinearLayout
-        android:id="@+id/repo_details"
+
+    <TextView
+        android:id="@+id/repo_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLength="140"
+        android:textColor="@color/textGrey"
+        android:textSize="@dimen/repo_description_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/repo_name"
-        app:layout_constraintTop_toBottomOf="@id/repo_name">
-
-        <TextView
-            android:id="@+id/repo_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/repo_description_size"
-            android:maxLength="140"
-            android:ellipsize="end"
-            android:textColor="@color/textGrey"
-            tools:text="A collection of projects to discuss and showcase different Android apps." />
+        app:layout_constraintTop_toBottomOf="@id/repo_name"
+        tools:text="A collection of projects to discuss and showcase different Android apps." />
 
 
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
