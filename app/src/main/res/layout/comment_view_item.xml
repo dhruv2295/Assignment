@@ -31,8 +31,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:ellipsize="end"
-        android:maxLength="140"
         android:textColor="@color/textGrey"
         android:textSize="@dimen/repo_description_size"
         app:layout_constraintEnd_toEndOf="parent"
