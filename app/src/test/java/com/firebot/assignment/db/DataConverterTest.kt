@@ -19,8 +19,8 @@ class DataConverterTest {
 
     @Test
     fun stringToBuiltBy() {
-        Assert.assertEquals(DataConverter().stringToBuiltBy(GsonBuilder().create().toJson(creators))?.get(0)?.avatar, creators[0].avatar)
-        Assert.assertEquals(DataConverter().stringToBuiltBy(GsonBuilder().create().toJson(creators))?.get(1)?.avatar, creators[1].avatar)
-        Assert.assertEquals(DataConverter().stringToBuiltBy(GsonBuilder().create().toJson(creators))?.get(2)?.avatar, creators[2].avatar)
+        Assert.assertEquals(DataConverter().stringToBuiltBy(GsonBuilder().create().toJson(creators)).get(0).avatar, creators[0].avatar)
+        Assert.assertEquals(DataConverter().stringToBuiltBy(GsonBuilder().create().toJson(creators)).get(1).avatar, creators[1].avatar)
+        Assert.assertEquals(DataConverter().stringToBuiltBy(GsonBuilder().create().toJson(creators)).get(2).avatar, creators[2].avatar)
     }
 }
