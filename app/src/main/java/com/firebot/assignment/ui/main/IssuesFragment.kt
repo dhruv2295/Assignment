@@ -15,31 +15,31 @@ import com.example.android.codelabs.paging.ui.IssueAdapter
 import com.firebot.assignment.R
 import com.firebot.assignment.service.model.Issues
 import kotlinx.android.synthetic.main.error_view.*
-import kotlinx.android.synthetic.main.main_fragment.*
+import kotlinx.android.synthetic.main.issues_fragment.*
 import kotlinx.android.synthetic.main.shimmer_placeholder.*
 
 
-class MainFragment : Fragment() {
+class IssuesFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() = IssuesFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: IssuesViewModel
     private val adapter = IssueAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        return inflater.inflate(R.layout.issues_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this,
             context?.let { Injection.provideViewModelFactory(it) })
-            .get(MainViewModel::class.java)
+            .get(IssuesViewModel::class.java)
 
 
         initAdapter()
@@ -82,7 +82,7 @@ class MainFragment : Fragment() {
     private fun initAdapter() {
         val decoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         list.addItemDecoration(decoration)
-        (list.getItemAnimator() as SimpleItemAnimator).supportsChangeAnimations = false
+        (list.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
 
         list.adapter = adapter
         viewModel.repos.observe(this, Observer<List<Issues>> {

@@ -18,7 +18,7 @@ class IssueViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private var repo: Issues? = null
 
-    private val context: Context = view.context;
+    private val context: Context = view.context
 
     fun bind(repo: Issues?) {
         if (repo == null) {
@@ -36,7 +36,7 @@ class IssueViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         if(repo.body.isNullOrBlank())
             description.visibility = View.GONE
 
-        description.text = repo.body;
+        description.text = repo.body
     }
 
     companion object {

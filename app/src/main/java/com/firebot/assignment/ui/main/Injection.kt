@@ -5,7 +5,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import com.example.android.codelabs.paging.db.IssueDatabase
 import com.example.android.codelabs.paging.ui.CommentViewModelFactory
-import com.example.android.codelabs.paging.ui.ViewModelFactory
+import com.example.android.codelabs.paging.ui.IssuesViewModelFactory
 import com.firebot.assignment.db.IssueLocalCache
 import com.firebot.assignment.service.repository.APIService
 import com.firebot.assignment.service.repository.CommentRepository
@@ -44,7 +44,7 @@ object Injection {
      * [ViewModel] objects.
      */
     fun provideViewModelFactory(context: Context): ViewModelProvider.Factory {
-        return ViewModelFactory(provideGithubRepository(context))
+        return IssuesViewModelFactory(provideGithubRepository(context))
     }
 
     fun provideCommentViewModelFactory(context: Context): ViewModelProvider.Factory {

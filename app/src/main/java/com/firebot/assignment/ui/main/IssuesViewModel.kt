@@ -8,7 +8,7 @@ import com.firebot.assignment.service.model.IssueFetchResults
 import com.firebot.assignment.service.model.Issues
 import com.firebot.assignment.service.repository.IssueRepository
 
-class MainViewModel(private val repository: IssueRepository) : ViewModel() {
+class IssuesViewModel(private val repository: IssueRepository) : ViewModel() {
 
     companion object {
         private const val VISIBLE_THRESHOLD = 5

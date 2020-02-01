@@ -6,5 +6,4 @@ import androidx.lifecycle.MutableLiveData
 data class CommentFetchResults(
     val data: LiveData<List<Comment>>,
     val networkErrors: MutableLiveData<String>
-) {
-}
+)

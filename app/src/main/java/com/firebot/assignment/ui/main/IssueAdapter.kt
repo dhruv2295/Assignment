@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.firebot.assignment.service.model.Issues
-import com.firebot.assignment.ui.main.MainFragmentDirections
+import com.firebot.assignment.ui.main.IssuesFragmentDirections
 
 /**
  * Adapter for the list of repositories.
@@ -27,7 +27,7 @@ class IssueAdapter : ListAdapter<Issues, RecyclerView.ViewHolder>(REPO_COMPARATO
             holder.itemView.setOnClickListener {
 
                 val direction =
-                    MainFragmentDirections.actionMainFragmentToCommentsFragment2(
+                    IssuesFragmentDirections.actionMainFragmentToCommentsFragment2(
                         repoItem.number.toString()
                     )
                 it.findNavController().navigate(direction)

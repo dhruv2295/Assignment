@@ -14,27 +14,27 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <include layout="@layout/project_empty_view_item" />
+            <include layout="@layout/empty_view_item" />
 
-            <include layout="@layout/project_empty_view_item" />
+            <include layout="@layout/empty_view_item" />
 
-            <include layout="@layout/project_empty_view_item" />
+            <include layout="@layout/empty_view_item" />
 
-            <include layout="@layout/project_empty_view_item" />
+            <include layout="@layout/empty_view_item" />
 
-            <include layout="@layout/project_empty_view_item" />
+            <include layout="@layout/empty_view_item" />
 
-            <include layout="@layout/project_empty_view_item" />
+            <include layout="@layout/empty_view_item" />
 
-            <include layout="@layout/project_empty_view_item" />
+            <include layout="@layout/empty_view_item" />
 
-            <include layout="@layout/project_empty_view_item" />
+            <include layout="@layout/empty_view_item" />
 
-            <include layout="@layout/project_empty_view_item" />
+            <include layout="@layout/empty_view_item" />
 
-            <include layout="@layout/project_empty_view_item" />
+            <include layout="@layout/empty_view_item" />
 
-            <include layout="@layout/project_empty_view_item" />
+            <include layout="@layout/empty_view_item" />
         </LinearLayout>
 
     </com.facebook.shimmer.ShimmerFrameLayout>

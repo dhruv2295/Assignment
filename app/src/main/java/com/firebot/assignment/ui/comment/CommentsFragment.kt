@@ -1,4 +1,4 @@
-package com.firebot.assignment.ui.detail
+package com.firebot.assignment.ui.comment
 
 import android.os.Bundle
 import android.util.Log
@@ -17,8 +17,8 @@ import com.firebot.assignment.R
 import com.firebot.assignment.service.model.Comment
 import kotlinx.android.synthetic.main.comment_fragment.*
 import kotlinx.android.synthetic.main.error_view.*
-import kotlinx.android.synthetic.main.main_fragment.list
-import kotlinx.android.synthetic.main.main_fragment.swiperefresh
+import kotlinx.android.synthetic.main.issues_fragment.list
+import kotlinx.android.synthetic.main.issues_fragment.swiperefresh
 import kotlinx.android.synthetic.main.shimmer_placeholder.*
 
 
@@ -59,7 +59,7 @@ class CommentsFragment : Fragment() {
     private fun initAdapter() {
         val decoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         list.addItemDecoration(decoration)
-        (list.getItemAnimator() as SimpleItemAnimator).supportsChangeAnimations = false
+        (list.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
 
         list.adapter = adapter
         viewModel.repos.observe(viewLifecycleOwner, Observer<List<Comment>> {

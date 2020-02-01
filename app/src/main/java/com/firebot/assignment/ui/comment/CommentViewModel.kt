@@ -1,4 +1,4 @@
-package com.firebot.assignment.ui.detail
+package com.firebot.assignment.ui.comment
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

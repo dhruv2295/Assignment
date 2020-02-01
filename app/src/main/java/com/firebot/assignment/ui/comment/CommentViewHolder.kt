@@ -18,8 +18,6 @@ class CommentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private var repo: Comment? = null
 
-    private val context: Context = view.context;
-
     fun bind(repo: Comment?) {
         if (repo == null) {
             val resources = itemView.resources
@@ -36,7 +34,7 @@ class CommentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             description.visibility = View.GONE
 
         name.text = repo.user?.login
-        description.text = repo.body;
+        description.text = repo.body
     }
 
     companion object {
