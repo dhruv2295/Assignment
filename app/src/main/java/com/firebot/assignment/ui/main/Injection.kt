@@ -4,9 +4,11 @@ package com.example.android.codelabs.paging
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import com.example.android.codelabs.paging.db.IssueDatabase
+import com.example.android.codelabs.paging.ui.CommentViewModelFactory
 import com.example.android.codelabs.paging.ui.ViewModelFactory
 import com.firebot.assignment.db.IssueLocalCache
 import com.firebot.assignment.service.repository.APIService
+import com.firebot.assignment.service.repository.CommentRepository
 import com.firebot.assignment.service.repository.IssueRepository
 import java.util.concurrent.Executors
 
@@ -33,11 +35,19 @@ object Injection {
         return IssueRepository(APIService.create(), provideCache(context))
     }
 
+    private fun provideCommentRepository(context: Context): CommentRepository {
+        return CommentRepository(APIService.create())
+    }
+
     /**
      * Provides the [ViewModelProvider.Factory] that is then used to get a reference to
      * [ViewModel] objects.
      */
     fun provideViewModelFactory(context: Context): ViewModelProvider.Factory {
         return ViewModelFactory(provideGithubRepository(context))
+    }
+
+    fun provideCommentViewModelFactory(context: Context): ViewModelProvider.Factory {
+        return CommentViewModelFactory(provideCommentRepository(context))
     }
 }
