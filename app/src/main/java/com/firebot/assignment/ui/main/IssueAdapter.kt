@@ -1,10 +1,12 @@
 package com.example.android.codelabs.paging.ui
 
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.firebot.assignment.service.model.Issues
+import com.firebot.assignment.ui.main.MainFragmentDirections
 
 /**
  * Adapter for the list of repositories.
@@ -15,7 +17,6 @@ class IssueAdapter : ListAdapter<Issues, RecyclerView.ViewHolder>(REPO_COMPARATO
         return IssueViewHolder.create(parent)
     }
 
-    private var previousPosition = -1
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val repoItem = getItem(position)
@@ -25,8 +26,12 @@ class IssueAdapter : ListAdapter<Issues, RecyclerView.ViewHolder>(REPO_COMPARATO
 
             holder.itemView.setOnClickListener {
 
+                val direction =
+                    MainFragmentDirections.actionMainFragmentToCommentsFragment2(
+                        repoItem.number.toString()
+                    )
+                it.findNavController().navigate(direction)
                 notifyItemChanged(position)
-
 
             }
         }

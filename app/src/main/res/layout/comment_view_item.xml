@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:padding="16dp"
+    tools:ignore="UnusedAttribute">
+
+
+    <TextView
+        android:id="@+id/comment_author"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:maxLines="10"
+        android:textColor="@color/textGrey"
+        android:textSize="@dimen/repo_name_size"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UnusedAttribute"
+        tools:text="Test Assignment App" />
+
+
+    <TextView
+        android:id="@+id/comment_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLength="140"
+        android:textColor="@color/textGrey"
+        android:textSize="@dimen/repo_description_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/comment_author"
+        app:layout_constraintTop_toBottomOf="@id/comment_author"
+        tools:text="A collection of projects to discuss and showcase different Android apps." />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

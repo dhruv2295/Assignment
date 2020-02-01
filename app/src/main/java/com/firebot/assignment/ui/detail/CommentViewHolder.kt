@@ -7,20 +7,20 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.firebot.assignment.R
-import com.firebot.assignment.service.model.Issues
+import com.firebot.assignment.service.model.Comment
 
 /**
- * View Holder for a [Issues] RecyclerView list item.
+ * View Holder for a [Comment] RecyclerView list item.
  */
-class IssueViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    private val name: TextView = view.findViewById(R.id.repo_name)
-    private val description: TextView = view.findViewById(R.id.repo_description)
+class CommentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    private val name: TextView = view.findViewById(R.id.comment_author)
+    private val description: TextView = view.findViewById(R.id.comment_description)
 
-    private var repo: Issues? = null
+    private var repo: Comment? = null
 
     private val context: Context = view.context;
 
-    fun bind(repo: Issues?) {
+    fun bind(repo: Comment?) {
         if (repo == null) {
             val resources = itemView.resources
             name.text = resources.getString(R.string.loading)
@@ -30,20 +30,20 @@ class IssueViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         }
     }
 
-    private fun showRepoData(repo: Issues) {
+    private fun showRepoData(repo: Comment) {
         this.repo = repo
-        name.text = repo.title
-        if(repo.body.isNullOrBlank())
+        if (repo.body.isNullOrBlank())
             description.visibility = View.GONE
 
+        name.text = repo.user?.login
         description.text = repo.body;
     }
 
     companion object {
-        fun create(parent: ViewGroup): IssueViewHolder {
+        fun create(parent: ViewGroup): CommentViewHolder {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.issue_view_item, parent, false)
-            return IssueViewHolder(view)
+                .inflate(R.layout.comment_view_item, parent, false)
+            return CommentViewHolder(view)
         }
     }
 }
