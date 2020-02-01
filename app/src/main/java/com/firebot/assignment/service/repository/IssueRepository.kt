@@ -14,7 +14,7 @@ class IssueRepository(
 ) {
 
     private var lastRequestedPage = 1
-    private var TIME_TO_PURGE = 86400000
+    private var TIME_TO_PURGE = 86400000 //24 hours
 
     private val networkErrors = MutableLiveData<String>()
 
@@ -24,12 +24,15 @@ class IssueRepository(
     fun getIssues(): IssueFetchResults {
 
         lastRequestedPage = 1
-        requestAndSaveData()
 
         cache.getTime {
             Log.d("LocalCache", "getting time:" + it)
             if (System.currentTimeMillis() - it > TIME_TO_PURGE)
+            {
                 cache.clearAllData()
+                requestAndSaveData()
+            }
+
         }
 
         return IssueFetchResults(cache.allIssues(), networkErrors)
